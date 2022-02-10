@@ -1,42 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MovingBox : MonoBehaviour
 {
+    [SerializeField, Range(0, 100f)] private float speed;
+    [SerializeField] private bool isDebug;
     private Vector2 _input;
-    
-    void Update()
-    {
-        var pos = transform.position;
 
-        var newPos = GetNewPos(pos);
-
-        transform.position = newPos;
-    }
-
-    Vector3 GetNewPos(Vector3 pos)
-    {
-        Vector3 newPos = pos;
-        
-        // Write code here
-        newPos.x += (_input.x*Time.deltaTime);
-        newPos.z += (_input.y*Time.deltaTime);
-
-        return newPos;
-    }
-
-    void OnMove(InputValue value)
+    [UsedImplicitly]
+    private void OnMove(InputValue value)
     {
         _input = value.Get<Vector2>();
-        
-        // W: (0, 1)
-        // A: (-1, 0)
-        // S: (0, -1)
-        // D: (1, 0)
-        // Joystick: (-1 ~ 1, -1 ~ 1)
-        
-        Debug.Log($"X: {_input.x}, Y: {_input.y}");
+        ShowLog();
     }
+
+    private void ShowLog()
+    {
+        if (isDebug) Debug.Log($"X: {_input.x}, Y: {_input.y}");
+    }
+    
+    private void Update() => MoveBox();
+    private void MoveBox() => transform.position += DeltaPosition;
+    private Vector3 DeltaPosition => _input.ConvertXZ() * Time.deltaTime * speed;
 }
