@@ -4,10 +4,11 @@ using UnityEngine.InputSystem;
 
 public class MovingBox : MonoBehaviour
 {
-    [SerializeField, Range(0, 100f)] private float speed;
+    [SerializeField, Range(0f, 100f)] private float speed;
     [SerializeField] private bool isDebug;
+    [SerializeField] private Camera mainCamera;
     private Vector2 _input;
-
+    
     [UsedImplicitly]
     private void OnMove(InputValue value)
     {
@@ -22,5 +23,18 @@ public class MovingBox : MonoBehaviour
     
     private void Update() => MoveBox();
     private void MoveBox() => transform.position += DeltaPosition;
-    private Vector3 DeltaPosition => _input.ConvertXZ() * Time.deltaTime * speed;
+    private Vector3 DeltaPosition => GetDirection() * Time.deltaTime * speed;
+
+    private Vector3 GetDirection()
+    {
+        // 원리: https://homo-robotics.tistory.com/16
+        
+        var mainCameraTransform = mainCamera.transform;
+        var cameraAxisY = mainCameraTransform.forward.ConvertXZ();
+        var cameraAxisX = mainCameraTransform.right.ConvertXZ();
+
+        var result = cameraAxisX * _input.x + cameraAxisY * _input.y;
+        
+        return result.ConvertXZ();
+    }
 }
