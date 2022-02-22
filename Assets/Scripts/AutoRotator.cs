@@ -15,12 +15,12 @@ public class AutoRotator : MonoBehaviour
 
     private void Update()
     {
-        var rotationAxis = axis switch
+        Vector3 rotationAxis = axis switch
         {
             Axis.X => Vector3.right,
             Axis.Y => Vector3.up,
             Axis.Z => Vector3.forward,
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(),
         };
 
         transform.Rotate(rotationAxis, speed * Time.deltaTime);
