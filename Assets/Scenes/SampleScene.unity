@@ -12276,7 +12276,7 @@ MonoBehaviour:
   isDebug: 0
   mainCamera: {fileID: 330585545}
   speed: 10
-  maxYVelocity: 1.5
+  maxYVelocity: 5
   gravity: -10
 --- !u!114 &828768983
 MonoBehaviour:
@@ -12510,7 +12510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0

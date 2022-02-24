@@ -9,7 +9,7 @@ public class MovingBox : MonoBehaviour
     
     [Header("Values")]
     [SerializeField, Range(0f, 50f)] private float speed;
-    [SerializeField, Range(0f, 3f)] private float maxYVelocity;
+    [SerializeField, Range(0f, 50f)] private float maxYVelocity;
     [SerializeField, Range(-50f, -5f)] private float gravity;
     
     private Vector2 _input;
@@ -64,12 +64,21 @@ public class MovingBox : MonoBehaviour
     
     private void ProcessJump()
     {
-        _currentYVelocity += gravity * Time.fixedDeltaTime;
+        // TODO: 이단 점프 막기
+        // TODO: 중력이 월드 방향에 영향받기 만들기
+        // TODO: 월드 경계랑 충돌하게 하기
+        // TODO: 환경오브젝트랑 충돌하게 하기
+        // TODO: 월드 회전 기믹 구현
+        // TODO: 카메라 각도 바꾸는 조작 추가
         
-        if (_currentYVelocity < 0f) _currentYVelocity = 0f;
+        // TODO: 건설 크래프팅 생존 게임
+
+        var deltaSpeed = gravity * Time.fixedDeltaTime;
+        _currentYVelocity += deltaSpeed;
 
         Vector3 position = transform.position;
-        position.y += _currentYVelocity + gravity * Time.fixedDeltaTime;
+        var deltaPosition = _currentYVelocity * Time.fixedDeltaTime;
+        position.y += deltaPosition;
         transform.position = position;
         
         LimitPlayerHeight();
@@ -81,6 +90,7 @@ public class MovingBox : MonoBehaviour
         
         Vector3 position = transform.localPosition;
         position.y = 0f;
+        _currentYVelocity = 0f;
         transform.localPosition = position;
     }
     
