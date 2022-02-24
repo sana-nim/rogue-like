@@ -2,8 +2,11 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class MovingBox : MonoBehaviour
 {
+    #region SerializedFields
+    
     [SerializeField] private bool isDebug;
     [SerializeField] private Camera mainCamera;
     
@@ -12,8 +15,16 @@ public class MovingBox : MonoBehaviour
     [SerializeField, Range(0f, 50f)] private float maxYVelocity;
     [SerializeField, Range(-50f, -5f)] private float gravity;
     
+    #endregion
+    
+    private CharacterController _cc;
     private Vector2 _input;
     private float _currentYVelocity;
+
+    private void Awake()
+    {
+        _cc = GetComponent<CharacterController>();
+    }
 
     private void FixedUpdate()
     {
@@ -41,9 +52,11 @@ public class MovingBox : MonoBehaviour
 
     #region Movement
 
-    private void MoveBox() => transform.position += DeltaPosition;
-    
-    private Vector3 DeltaPosition => GetDirection() * Time.fixedDeltaTime * speed;
+    private void MoveBox()
+    {
+        Vector3 deltaPosition = GetDirection() * Time.fixedDeltaTime * speed;
+        _cc.Move(deltaPosition);
+    }
 
     private Vector3 GetDirection()
     {
@@ -65,10 +78,6 @@ public class MovingBox : MonoBehaviour
     private void ProcessJump()
     {
         // TODO: 이단 점프 막기
-        // TODO: 중력이 월드 방향에 영향받기 만들기
-        // TODO: 월드 경계랑 충돌하게 하기
-        // TODO: 환경오브젝트랑 충돌하게 하기
-        // TODO: 월드 회전 기믹 구현
         // TODO: 카메라 각도 바꾸는 조작 추가
         
         // TODO: 건설 크래프팅 생존 게임
@@ -76,22 +85,17 @@ public class MovingBox : MonoBehaviour
         var deltaSpeed = gravity * Time.fixedDeltaTime;
         _currentYVelocity += deltaSpeed;
 
-        Vector3 position = transform.position;
-        var deltaPosition = _currentYVelocity * Time.fixedDeltaTime;
-        position.y += deltaPosition;
-        transform.position = position;
-        
-        LimitPlayerHeight();
+        var yDeltaPosition = _currentYVelocity * Time.fixedDeltaTime;
+
+        var deltaPosition = new Vector3(0f, yDeltaPosition, 0f);
+        _cc.Move(deltaPosition);
+
+        LimitPlayerVelocity();
     }
     
-    private void LimitPlayerHeight()
+    private void LimitPlayerVelocity()
     {
-        if (transform.localPosition.y > 0f) return;
-        
-        Vector3 position = transform.localPosition;
-        position.y = 0f;
-        _currentYVelocity = 0f;
-        transform.localPosition = position;
+        if (_cc.isGrounded) _currentYVelocity = 0f;
     }
     
     #endregion
