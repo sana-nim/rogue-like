@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AutoRotator : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class AutoRotator : MonoBehaviour
     }
     
     [SerializeField] private Axis axis;
-    [SerializeField, Range(0f, 100f)] private float speed;
+    [SerializeField, Range(-100f, 100f)] private float speed;
+    [SerializeField] private bool isShake;
 
+    private float lerpSpeed = 0f;
+    
     private void Update()
     {
         Vector3 rotationAxis = axis switch
@@ -22,7 +26,14 @@ public class AutoRotator : MonoBehaviour
             Axis.Z => Vector3.forward,
             _ => throw new ArgumentOutOfRangeException(),
         };
-
-        transform.Rotate(rotationAxis, speed * Time.deltaTime);
+        
+        if (isShake)
+        {
+            transform.Rotate(rotationAxis, Random.Range(-speed, speed) * Time.deltaTime);
+        }
+        else
+        {
+            transform.Rotate(rotationAxis, speed * Time.deltaTime);
+        }
     }
 }
