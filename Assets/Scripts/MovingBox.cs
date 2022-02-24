@@ -2,6 +2,9 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// TODO: 카메라 각도 바꾸는 조작 추가
+// TODO: 건설 크래프팅 생존 게임
+
 [RequireComponent(typeof(CharacterController))]
 public class MovingBox : MonoBehaviour
 {
@@ -11,15 +14,18 @@ public class MovingBox : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     
     [Header("Values")]
-    [SerializeField, Range(0f, 50f)] private float speed;
-    [SerializeField, Range(0f, 50f)] private float maxYVelocity;
-    [SerializeField, Range(-50f, -5f)] private float gravity;
+    [SerializeField, Range(0f, 50f)] private float speed = 10f;
+    [SerializeField, Range(0f, 50f)] private float maxYVelocity = 5f;
+    [SerializeField, Range(-50f, -5f)] private float gravity = -10f;
+    [SerializeField, Range(1, 4)] private int maxJumpTimes = 2;
     
     #endregion
     
     private CharacterController _cc;
     private Vector2 _input;
     private float _currentYVelocity;
+    private int _jumpCount;
+    
 
     private void Awake()
     {
@@ -38,14 +44,19 @@ public class MovingBox : MonoBehaviour
     private void OnMove(InputValue value)
     {
         _input = value.Get<Vector2>();
-        if (isDebug) Debug.Log($"X: {_input.x}, Y: {_input.y}");
+        if (isDebug) Debug.Log($"Joystick X: {_input.x}, Y: {_input.y}");
     }
     
     [UsedImplicitly]
     private void OnJump(InputValue value)
     {
-        if (value.isPressed) _currentYVelocity = maxYVelocity;
-        if (isDebug) Debug.Log("Pressed Jump");
+        if (_cc.isGrounded) _jumpCount = 0;
+        if (_jumpCount == maxJumpTimes) return;
+        
+        _currentYVelocity = maxYVelocity;
+        _jumpCount++;
+
+        if (isDebug) Debug.Log($"Jump {_jumpCount} times!");
     }
 
     #endregion
@@ -77,11 +88,6 @@ public class MovingBox : MonoBehaviour
     
     private void ProcessJump()
     {
-        // TODO: 이단 점프 막기
-        // TODO: 카메라 각도 바꾸는 조작 추가
-        
-        // TODO: 건설 크래프팅 생존 게임
-
         var deltaSpeed = gravity * Time.fixedDeltaTime;
         _currentYVelocity += deltaSpeed;
 
