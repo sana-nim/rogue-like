@@ -6,20 +6,18 @@ namespace Sana
 {
     public class AutoRotator : MonoBehaviour
     {
-        private enum Axis
+        enum Axis
         {
             X,
             Y,
             Z,
         }
     
-        [SerializeField] private Axis axis;
-        [SerializeField, Range(-100f, 100f)] private float speed;
-        [SerializeField] private bool isShake;
+        [SerializeField] Axis axis;
+        [SerializeField, Range(-100f, 100f)] float speed;
+        [SerializeField] bool isShake;
 
-        private float lerpSpeed = 0f;
-    
-        private void Update()
+        void Update()
         {
             Vector3 rotationAxis = axis switch
             {

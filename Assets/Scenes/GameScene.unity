@@ -1667,6 +1667,83 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c9223dfaf47c4b4eb9b9a61579244e7, type: 3}
+--- !u!1 &97523541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97523543}
+  - component: {fileID: 97523542}
+  m_Layer: 0
+  m_Name: Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &97523542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97523541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 27199d893e9b1d247b9205f4ca7ae0f8,
+    type: 3}
+  m_NotificationBehavior: 1
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: be0522d9-ec17-45f2-bc8a-6d0c3e7ea90f
+    m_ActionName: Desktop/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3b1f8535-35e8-4453-a534-6e959646a4fb
+    m_ActionName: Desktop/Fire
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c1b3cb5-a631-4f63-9ed0-beccf6c09dbe
+    m_ActionName: Desktop/Trigger
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Desktop
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &97523543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97523541}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 966819651}
+  - {fileID: 828768981}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &105815756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12372,7 +12449,6 @@ GameObject:
   - component: {fileID: 828768981}
   - component: {fileID: 828768980}
   - component: {fileID: 828768979}
-  - component: {fileID: 828768983}
   - component: {fileID: 828768985}
   - component: {fileID: 828768984}
   m_Layer: 0
@@ -12444,52 +12520,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 97523543}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &828768983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 828768977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 27199d893e9b1d247b9205f4ca7ae0f8,
-    type: 3}
-  m_NotificationBehavior: 1
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: be0522d9-ec17-45f2-bc8a-6d0c3e7ea90f
-    m_ActionName: Desktop/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3b1f8535-35e8-4453-a534-6e959646a4fb
-    m_ActionName: Desktop/Fire
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2c1b3cb5-a631-4f63-9ed0-beccf6c09dbe
-    m_ActionName: Desktop/Trigger
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Desktop
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &828768984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14702,6 +14735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 966819651}
   - component: {fileID: 966819653}
+  - component: {fileID: 966819654}
   m_Layer: 0
   m_Name: Camera Pivot
   m_TagString: Untagged
@@ -14716,14 +14750,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966819650}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1452087581}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 97523543}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1818360608 &966819653
 PositionConstraint:
@@ -14744,6 +14778,18 @@ PositionConstraint:
   m_Sources:
   - sourceTransform: {fileID: 828768981}
     weight: 1
+--- !u!114 &966819654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966819650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a468f342bd42b183e1ece4ec7d97a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &967726190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1476670099519366566, guid: 257e42b9a9f55ec43b4032bf0a9efc30,
@@ -34058,7 +34104,7 @@ Transform:
   m_Children:
   - {fileID: 1243769580}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2059283148
 MonoBehaviour:

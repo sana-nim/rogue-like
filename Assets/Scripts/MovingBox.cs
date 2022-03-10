@@ -6,34 +6,34 @@ using UnityEngine.InputSystem;
 namespace Sana
 {
     [RequireComponent(typeof(CharacterController))]
-    public class MovingBox : MonoBehaviour
+    class MovingBox : MonoBehaviour
     {
         #region SerializedFields
 
-        [SerializeField] private bool isDebug;
-        [SerializeField] private Camera mainCamera;
+        [SerializeField] bool isDebug;
+        [SerializeField] Camera mainCamera;
 
         [Header("Values")] [SerializeField, Range(0f, 50f)]
-        private float speed = 10f;
+        float speed = 10f;
 
-        [SerializeField, Range(0f, 50f)] private float maxYVelocity = 5f;
-        [SerializeField, Range(-50f, -5f)] private float gravity = -10f;
-        [SerializeField, Range(1, 4)] private int maxJumpTimes = 2;
+        [SerializeField, Range(0f, 50f)] float maxYVelocity = 5f;
+        [SerializeField, Range(-50f, -5f)] float gravity = -10f;
+        [SerializeField, Range(1, 4)] int maxJumpTimes = 2;
 
         #endregion
 
-        private CharacterController _cc;
-        private Vector2 _input;
-        private float _currentYVelocity;
-        private int _jumpCount;
+        CharacterController _cc;
+        Vector2 _input;
+        float _currentYVelocity;
+        int _jumpCount;
 
 
-        private void Awake()
+        void Awake()
         {
             _cc = GetComponent<CharacterController>();
         }
 
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             MoveBox();
             ProcessJump();
@@ -42,14 +42,14 @@ namespace Sana
         #region Input
 
         [UsedImplicitly]
-        private void OnMove(InputValue value)
+        void OnMove(InputValue value)
         {
             _input = value.Get<Vector2>();
             if (isDebug) Debug.Log($"Joystick X: {_input.x}, Y: {_input.y}");
         }
 
         [UsedImplicitly]
-        private void OnJump(InputValue value)
+        void OnJump(InputValue value)
         {
             if (_cc.isGrounded) _jumpCount = 0;
             if (_jumpCount == maxJumpTimes) return;
@@ -64,13 +64,13 @@ namespace Sana
 
         #region Movement
 
-        private void MoveBox()
+        void MoveBox()
         {
             Vector3 deltaPosition = GetDirection() * (Time.fixedDeltaTime * speed);
             _cc.Move(deltaPosition);
         }
 
-        private Vector3 GetDirection()
+        Vector3 GetDirection()
         {
             // 원리: https://homo-robotics.tistory.com/16
 
@@ -87,7 +87,7 @@ namespace Sana
 
         #region Jump
 
-        private void ProcessJump()
+        void ProcessJump()
         {
             var deltaSpeed = gravity * Time.fixedDeltaTime;
             _currentYVelocity += deltaSpeed;
@@ -100,7 +100,7 @@ namespace Sana
             LimitPlayerVelocity();
         }
 
-        private void LimitPlayerVelocity()
+        void LimitPlayerVelocity()
         {
             if (_cc.isGrounded) _currentYVelocity = 0f;
         }
