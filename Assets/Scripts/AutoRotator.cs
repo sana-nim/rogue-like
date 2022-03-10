@@ -2,38 +2,41 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class AutoRotator : MonoBehaviour
+namespace Sana
 {
-    private enum Axis
+    public class AutoRotator : MonoBehaviour
     {
-        X,
-        Y,
-        Z,
-    }
-    
-    [SerializeField] private Axis axis;
-    [SerializeField, Range(-100f, 100f)] private float speed;
-    [SerializeField] private bool isShake;
-
-    private float lerpSpeed = 0f;
-    
-    private void Update()
-    {
-        Vector3 rotationAxis = axis switch
+        private enum Axis
         {
-            Axis.X => Vector3.right,
-            Axis.Y => Vector3.up,
-            Axis.Z => Vector3.forward,
-            _ => throw new ArgumentOutOfRangeException(),
-        };
-        
-        if (isShake)
-        {
-            transform.Rotate(rotationAxis, Random.Range(-speed, speed) * Time.deltaTime);
+            X,
+            Y,
+            Z,
         }
-        else
+    
+        [SerializeField] private Axis axis;
+        [SerializeField, Range(-100f, 100f)] private float speed;
+        [SerializeField] private bool isShake;
+
+        private float lerpSpeed = 0f;
+    
+        private void Update()
         {
-            transform.Rotate(rotationAxis, speed * Time.deltaTime);
+            Vector3 rotationAxis = axis switch
+            {
+                Axis.X => Vector3.right,
+                Axis.Y => Vector3.up,
+                Axis.Z => Vector3.forward,
+                _ => throw new ArgumentOutOfRangeException(),
+            };
+        
+            if (isShake)
+            {
+                transform.Rotate(rotationAxis, Random.Range(-speed, speed) * Time.deltaTime);
+            }
+            else
+            {
+                transform.Rotate(rotationAxis, speed * Time.deltaTime);
+            }
         }
     }
 }

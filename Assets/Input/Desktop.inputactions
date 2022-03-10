@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "3e2ea163-7481-4124-aeae-8e78b0b6119c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "3b1f8535-35e8-4453-a534-6e959646a4fb",
@@ -33,13 +42,31 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "3e2ea163-7481-4124-aeae-8e78b0b6119c",
-                    "expectedControlType": "Button",
+                    "name": "CameraTilt",
+                    "type": "Value",
+                    "id": "234dc16a-22c7-4338-99de-5912bdc3bc6d",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "CameraRotate",
+                    "type": "Value",
+                    "id": "9e75cb35-d8c9-40e0-8c6f-5b1157635e08",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "CameraZoom",
+                    "type": "Value",
+                    "id": "62bc0bb7-18cb-4726-9c6b-3ee3288d6586",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -166,6 +193,17 @@
                 },
                 {
                     "name": "",
+                    "id": "31f71385-4bc3-43d9-948e-81419682fc9a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9d8de929-3fb4-4392-98f6-2c4a8288d14a",
                     "path": "",
                     "interactions": "",
@@ -187,15 +225,81 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "31f71385-4bc3-43d9-948e-81419682fc9a",
-                    "path": "<Keyboard>/space",
+                    "name": "One Modifier",
+                    "id": "36254028-1a76-446a-94e5-94d767fce546",
+                    "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "CameraRotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "a78f320b-2823-4a1e-ac30-48f451327b83",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraRotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "08a3f095-7968-4183-ae64-925abb64dd12",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraRotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "72ff247f-405d-4299-a3f0-3cfc0f4afa38",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraZoom",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "3570618b-a9f2-4c33-8f4a-d4a88ca8fa07",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraTilt",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "a2f69145-0d8a-4dd9-8271-3df28925f3a5",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraTilt",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Binding",
+                    "id": "f71bdaf9-7fe1-428f-84c5-3e07c0491452",
+                    "path": "<Mouse>/position/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraTilt",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

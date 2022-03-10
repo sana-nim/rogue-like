@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 
-public static class Vector2Extension
+namespace Sana.Utils
 {
-    public static Vector3 ConvertXZ(this Vector2 input)
+    public static class Vector2Extension
     {
-        Vector3 result = default;
+        public static Vector3 ConvertXZ(this Vector2 input)
+        {
+            Vector3 result = default;
         
-        result.x = input.x;
-        result.y = 0f;
-        result.z = input.y;
+            result.x = input.x;
+            result.y = 0f;
+            result.z = input.y;
         
-        return result;
+            return result;
+        }
     }
 }
