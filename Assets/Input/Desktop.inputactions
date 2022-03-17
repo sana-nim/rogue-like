@@ -293,7 +293,7 @@
                 {
                     "name": "Binding",
                     "id": "f71bdaf9-7fe1-428f-84c5-3e07c0491452",
-                    "path": "<Mouse>/position/y",
+                    "path": "<Mouse>/delta/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
